@@ -7,6 +7,7 @@ import Home from './components/Home'
 import ChangePasswordForm from './components/ChangePasswordForm'
 import ProductList from './components/ProductList'
 import ProductForm from './components/ProductForm'
+import ProductDetail from './components/ProductDetail'
 
 function App() {
 
@@ -20,7 +21,9 @@ function App() {
 
         <Route path="/products" element={<ProductList />} />
         <Route path="/products/create" element={<ProductForm />} />
-        
+        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/products/:id/edit" element={<ProductForm />} />
+
       </Routes>
     </BrowserRouter>
   )

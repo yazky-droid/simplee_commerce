@@ -52,8 +52,8 @@ const ProductList = () => {
                             <h3 className="text-lg font-semibold">{product.name}</h3>
                             <p>Price: ${product.price}</p>
                             <p>Stock: ${product.stock}</p>
-                            <Link to={`/product/${product.id}`} className="text-blue-500 hover:underline block mt-2">View Details</Link>
-                            <Link to={`/product/${product.id}/edit`} className="text-yellow-500 hover:underline block mt-2">Edit</Link>
+                            <Link to={`/products/${product.id}`} className="text-blue-500 hover:underline block mt-2">View Details</Link>
+                            <Link to={`/products/${product.id}/edit`} className="text-yellow-500 hover:underline block mt-2">Edit</Link>
                         </div>
                     ))
                 }

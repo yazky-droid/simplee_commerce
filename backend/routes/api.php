@@ -13,8 +13,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::put('/password', [AuthController::class, 'updatePassword']);
 
-    Route::get('/products', [ProductController::class, 'index']);
-    Route::post('/products', [ProductController::class, 'store']);
+    Route::apiResource('products', ProductController::class);
 });
 
 Route::get('/user', function (Request $request) {
