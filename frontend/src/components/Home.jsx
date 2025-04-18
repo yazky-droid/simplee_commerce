@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ProductList from "./ProductList";
+import LoginForm from "./LoginForm";
 
 const Home = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token') ? true : false);
@@ -27,11 +29,18 @@ const Home = () => {
     }
 
     return(
-        <div>
-            <h1>Home</h1>
-            {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
-            {isLoggedIn && <Link to="/update-password">Update Password</Link>}
-        </div>
+        isLoggedIn ?
+            <div>
+              <h1>Home</h1>
+              <button onClick={handleLogout}>Logout</button>
+              <Link to="/update-password">Update Password</Link>
+              <ProductList />
+            </div>
+            :
+            <div>
+              <h1>Please Login</h1>
+              <LoginForm />
+            </div>
     );
 }
 
