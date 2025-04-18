@@ -1,0 +1,15 @@
+# Laravel
+/backend/vendor/
+/backend/node_modules/
+/backend/.env
+/backend/public/storage
+/backend/storage/framework/
+/backend/storage/logs/
+
+# React (Vite)
+/frontend/node_modules/
+/frontend/dist/
+
+# OS
+.DS_Store
+Thumbs.db
