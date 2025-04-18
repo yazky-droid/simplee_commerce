@@ -3,6 +3,7 @@
 /backend/node_modules/
 /backend/.env
 /backend/public/storage
+/backend/public/images
 /backend/storage/framework/
 /backend/storage/logs/
 
