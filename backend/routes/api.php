@@ -13,7 +13,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::put('/password', [AuthController::class, 'updatePassword']);
 
-    Route::apiResource('products', ProductController::class);
+    // only accessible for admin role
+    Route::apiResource('products', ProductController::class)->middleware('role:admin');
 });
 
 Route::get('/user', function (Request $request) {

@@ -29,6 +29,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $user->assignRole('user');
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
@@ -64,6 +66,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Login successful',
             'token' => $token,
+            'role' => $user->getRoleNames()->first()
         ], 200);
     }
 
