@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,9 +24,10 @@ const LoginForm = () => {
             const data = await response.json();
 
             if(response.ok){
-                // Simpan token di localStorage atau state (tergantung kebutuhan)
-                localStorage.setItem('token', data.token);
-                // Redirect ke halaman dashboard atau home setelah login
+                // saving the token and role using login func
+                login(data.token, data.role);
+                
+                // Redirect to dashboard page after login success
                 navigate('/');
             } else {
                 setError(data.message || "Login failed!");
