@@ -36,38 +36,38 @@ const ProductList = () => {
     }, [currentPage]); 
 
     if (loading) {
-        return <div>Loading...</div>
+        return <div className="text-gray-300">Loading...</div>
     }
 
     if (error) {
-        return <div>Error: {error}</div>
+        return <div className="text-red-500">Error: {error}</div>
     }
 
     return (
-        <div>
+        <div className="bg-gray-900 text-white py-6 px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold mb-4">Product List</h2>
-            <Link to="/products/create" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4 inline-block">Create Product</Link>
+            <Link to="/admin/products/create" className="bg-slate-500 hover:bg-slate-700 text-gray-300 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4 inline-block">Create Product</Link>
             {products.length > 0 ? (
                 <table className="min-w-full leading-normal">
                     <thead>
                         <tr>
-                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Name</th>
-                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Description</th>
-                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Price</th>
-                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Stock</th>
-                            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Actions</th>
+                            <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Name</th>
+                            <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Description</th>
+                            <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Price</th>
+                            <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Stock</th>
+                            <th className="px-5 py-3 border-b-2 border-gray-700 bg-gray-800 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {products.map(product => (
                             <tr key={product.id}>
-                                <td className="px-5 py-5 border-b border-gray-200 text-gray-700 bg-white text-sm">{product.name}</td>
-                                <td className="px-5 py-5 border-b border-gray-200 text-gray-700 bg-white text-sm">{product.description}</td>
-                                <td className="px-5 py-5 border-b border-gray-200 text-gray-700 bg-white text-sm">{product.price}</td>
-                                <td className="px-5 py-5 border-b border-gray-200 text-gray-700 bg-white text-sm">{product.stock}</td>
-                                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <Link to={`/products/${product.id}`} className="text-blue-500 hover:underline mr-2">View</Link>
-                                    <Link to={`/products/${product.id}/edit`} className="text-green-500 hover:underline mr-2">Edit</Link>
+                                <td className="px-5 py-5 border-b border-gray-700 bg-gray-900 text-sm">{product.name}</td>
+                                <td className="px-5 py-5 border-b border-gray-700 bg-gray-900 text-sm">{product.description}</td>
+                                <td className="px-5 py-5 border-b border-gray-700 bg-gray-900 text-sm">{product.price}</td>
+                                <td className="px-5 py-5 border-b border-gray-700 bg-gray-900 text-sm">{product.stock}</td>
+                                <td className="px-5 py-5 border-b border-gray-70 bg-gray-900 text-sm">
+                                    <Link to={`/admin/products/${product.id}`} className="text-blue-500 hover:underline mr-2">View</Link>
+                                    <Link to={`/admin/products/${product.id}/edit`} className="text-green-500 hover:underline mr-2">Edit</Link>
                                     <button onClick={() => handleDelete(product.id)} className="text-red-500 hover:underline">Delete</button>
                                 </td>
                             </tr>

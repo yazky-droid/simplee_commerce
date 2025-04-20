@@ -23,9 +23,9 @@ const LoginForm = () => {
 
             const data = await response.json();
 
-            if(response.ok){
+            if(response.ok && data.data.token && data.data.user){
                 // saving the token and role using login func
-                login(data.data.token, data.data.role);
+                login(data.data.token, data.data.role, data.data.user);
                 
                 // Redirect to dashboard page after login success
                 navigate('/');
@@ -35,7 +35,7 @@ const LoginForm = () => {
             
         } catch (err) {
             setError("Network error");
-        }
+        } 
     };
 
     return(

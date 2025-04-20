@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; 
 
 const AuthContext = createContext();
 
@@ -7,18 +6,27 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [role, setRole] = useState(null);
+    const [token, setToken] = useState(null);
+    const [user, setUser] = useState(null); 
 
     useEffect(() => {
         const checkAuth = () => {
             const token = localStorage.getItem('token');
             const storedRole = localStorage.getItem('role');
+            const storedUser = localStorage.getItem('user'); 
 
             if (token) {
                 setIsLoggedIn(true);
+                setToken(token);
                 setRole(storedRole);
+                if (storedUser) {
+                    setUser(JSON.parse(storedUser)); 
+                }
             } else {
                 setIsLoggedIn(false);
+                setToken(null);
                 setRole(null);
+                setUser(null);
             }
             setIsLoading(false);
         };
@@ -26,14 +34,17 @@ export const AuthProvider = ({ children }) => {
         checkAuth();
     }, []);
 
-    const login = (token, userRole) => {
-        localStorage.setItem('token', token);
+    const login = (newToken, userRole, userData) => { 
+        localStorage.setItem('token', newToken);
         localStorage.setItem('role', userRole);
-        setIsLoggedIn(true);
+        localStorage.setItem('user', JSON.stringify(userData)); 
+        setToken(newToken);
         setRole(userRole);
+        setIsLoggedIn(true);
+        setUser(userData);
     };
 
-    const logout = async (navigate) => { 
+    const logout = async (navigate) => {
         try {
             const response = await fetch('http://127.0.0.1:8000/api/logout', {
                 method: 'POST',
@@ -45,9 +56,12 @@ export const AuthProvider = ({ children }) => {
             if (response.ok) {
                 localStorage.removeItem('token');
                 localStorage.removeItem('role');
+                localStorage.removeItem('user'); 
                 setIsLoggedIn(false);
                 setRole(null);
-                navigate('/login'); 
+                setToken(null);
+                setUser(null); 
+                navigate('/login');
             } else {
                 console.error('Logout failed');
             }
@@ -60,6 +74,8 @@ export const AuthProvider = ({ children }) => {
         isLoading,
         isLoggedIn,
         role,
+        token,
+        user, 
         login,
         logout
     };

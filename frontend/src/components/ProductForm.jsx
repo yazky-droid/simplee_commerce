@@ -26,14 +26,14 @@ const ProductForm = () => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch product details');
                     }
-
+                    
                     const data = await response.json();
-                    setName(data.name);
-                    setDescription(data.description);
-                    setPrice(data.price);
-                    setStock(data.stock);
-                    if (data.image_path) {
-                        setPreviewImage(`http://127.0.0.1:8000${data.image_path}`);
+                    setName(data.data.name);
+                    setDescription(data.data.description);
+                    setPrice(data.data.price);
+                    setStock(data.data.stock);
+                    if (data.data.image_path) {
+                        setPreviewImage(`http://127.0.0.1:8000${data.data.image_path}`);
                     }
                 } catch (err) {
                     setError(err.message);
