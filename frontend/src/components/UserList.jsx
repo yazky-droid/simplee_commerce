@@ -3,31 +3,34 @@ import { Link } from 'react-router-dom';
 
 const UserList = () => {
     const [users, setUsers] = useState([]);
+    const [pagination, setPagination] = useState({});
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const fetchUsers = async () => {
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/api/users?page=${currentPage}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Failed to fetch users');
+            }
+            const data = await response.json();
+            setUsers(data.data);
+            setPagination(data.pagination);
+            setLoading(false);
+        } catch (err) {
+            setError(err.message);
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                const response = await fetch('http://127.0.0.1:8000/api/users', {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    },
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch users');
-                }
-                const data = await response.json();
-                setUsers(data);
-                setLoading(false);
-            } catch (err) {
-                setError(err.message);
-                setLoading(false);
-            }
-        };
-
         fetchUsers();
-    }, []);
+    }, [currentPage]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -70,7 +73,22 @@ const UserList = () => {
             ) : (
                 <p>No users found.</p>
             )}
+
+            {/* Pagination */}
+            <div className="flex justify-center mt-4">
+                {pagination.current_page > 1 && (
+                    <button onClick={() => setCurrentPage(currentPage - 1)} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">Previous</button>
+                )}
+                {Array.from({ length: pagination.total_pages }, (_, i) => i + 1).map(page => (
+                    <button key={page} onClick={() => setCurrentPage(page)} className={`py-2 px-4 ${currentPage === page ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>{page}</button>
+                ))}
+                {pagination.current_page < pagination.total_pages && (
+                    <button onClick={() => setCurrentPage(currentPage + 1)} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">Next</button>
+                )}
+            </div>
         </div>
+
+        
     );
 
     async function handleDelete(id) {

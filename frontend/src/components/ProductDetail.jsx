@@ -18,11 +18,11 @@ const ProductDetail = () => {
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to fetch product details');
+                    throw new Error('Failed to fetch product details or data not found');
                 }
 
                 const data = await response.json();
-                setProduct(data);
+                setProduct(data.data);
                 setLoading(false);
             } catch (err) {
                 setError(err.message);
@@ -33,7 +33,7 @@ const ProductDetail = () => {
         fetchProduct();
     }, [id]);
 
-    
+
     const handleDelete = async () => {
         if (window.confirm("Are you sure you want to delete this product?")) {
             try {

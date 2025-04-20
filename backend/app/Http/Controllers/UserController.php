@@ -11,8 +11,17 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return response()->json($users);
+        $users = User::paginate(10); 
+
+        return response()->json([
+            'data' => $users->items(),
+            'pagination' => [
+                'current_page' => $users->currentPage(),
+                'total_pages' => $users->lastPage(),
+                'per_page' => $users->perPage(),
+                'total' => $users->total(),
+            ],
+        ], 200);
     }
 
     public function store(Request $request)
@@ -27,8 +36,9 @@ class UserController extends Controller
 
         if($validator->fails()) {
             return response()->json([
+                'message' => 'Validation error',
                 'errors' => $validator->errors()
-                ], 422);
+            ], 422);
         }
 
         $user = User::create([
@@ -41,13 +51,18 @@ class UserController extends Controller
 
         $user->assignRole('user');
 
-        return response()->json($user, 201);
+        return response()->json([
+            'message' => 'User created successfully',
+            'data' => $user,
+        ], 201);
 
     }
 
     public function show(User $user)
     {
-        return response()->json($user);
+        return response()->json([
+            'data' => $user,
+        ], 200);
     }
 
     public function update(Request $request, User $user)
@@ -61,7 +76,10 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return response()->json([
+                'message' => 'Validation error',
+                'errors' => $validator->errors()
+            ], 422);
         }
 
         $userData = $request->except('password');
@@ -71,13 +89,20 @@ class UserController extends Controller
         }
 
         $user->update($userData);
-        return response()->json($user, 200);
+        
+        return response()->json([
+            'message' => 'User updated successfully',
+            'data' => $user,
+        ], 200);
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return response()->json(null, 204);
+        
+        return response()->json([
+            'message' => 'User deleted successfully',
+        ], 200); 
     }
     
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,10 +18,11 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
-                ], 422);
+                'message' => 'Validation error',
+                'errors' => $validator->errors(),
+            ], 422);
         }
 
         $user = User::create([
@@ -28,82 +30,90 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        
         $user->assignRole('user');
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'message' => 'Registration successful',
-            'token' => $token,
+            'data' => [
+                'user' => $user,
+                'token' => $token,
+            ],
         ], 201);
-
     }
 
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json([
+                'message' => 'Validation error',
                 'errors' => $validator->errors(),
             ], 422);
         }
 
-        $user = User::where('email', $request->email)->first();
-
-        if(!$user || !Hash::check($request->password, $user->password)) {
+        if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-                'message' => 'Invalid Credentials'
+                'message' => 'Invalid login credentials',
             ], 401);
         }
 
+        $user = Auth::user();
         $token = $user->createToken('auth_token')->plainTextToken;
+        $role = $user->getRoleNames()->first();
 
         return response()->json([
             'message' => 'Login successful',
-            'token' => $token,
-            'role' => $user->getRoleNames()->first()
+            'data' => [
+                'token' => $token,
+                'role' => $role,
+            ],
         ], 200);
     }
 
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
+
         return response()->json([
-            'message' => 'Logged out'
+            'message' => 'Logout successful',
         ], 200);
     }
 
     public function updatePassword(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'old_password' => 'required|string',
+            'old_password' => 'required|string|min:8',
             'new_password' => 'required|string|min:8|confirmed',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()
+                'message' => 'Validation error',
+                'errors' => $validator->errors(),
             ], 422);
         }
 
         $user = $request->user();
 
-        if(!Hash::check($request->old_password, $user->password)) {
+        if (!Hash::check($request->old_password, $user->password)) {
             return response()->json([
-                'message' => 'Invalid old password'
-            ], 400);
+                'message' => 'Incorrect old password',
+            ], 401);
         }
 
-        $user->password = Hash::make($request->new_password);
-        $user->save();
+        $user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
 
         return response()->json([
-            'message' => 'Password updated successfully'
+            'message' => 'Password updated successfully',
         ], 200);
     }
 }

@@ -25,7 +25,7 @@ const LoginForm = () => {
 
             if(response.ok){
                 // saving the token and role using login func
-                login(data.token, data.role);
+                login(data.data.token, data.data.role);
                 
                 // Redirect to dashboard page after login success
                 navigate('/');
