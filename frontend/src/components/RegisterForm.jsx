@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 
 const RegisterForm = () => {
     const [name, setName] = useState('');
@@ -7,8 +7,8 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const [error, setError] = useState(null);
-    const [successMessage, setSuccessMessage] = useState(null); // State untuk pesan sukses
-    const navigate = useNavigate(); // Inisialisasi useNavigate
+    const [successMessage, setSuccessMessage] = useState(null); 
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();

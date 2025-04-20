@@ -54,10 +54,10 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'string|max:255',
-            'address' => 'string',
-            'phone' => 'integer|max:20',
+            'address' => 'nullable|string',
+            'phone' => 'nullable|numeric',
             'email' => 'string|email|max:255|unique:users,email,' . $user->id, 
-            'password' => 'string|min:8',
+            'password' => 'nullable|string|min:8',
         ]);
 
         if ($validator->fails()) {

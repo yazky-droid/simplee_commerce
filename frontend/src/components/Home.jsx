@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import ProductList from './ProductList';
-import AuthContext from '../contexts/AuthContext'; 
 import { Link, useNavigate } from 'react-router-dom';
+import ProductList from './ProductList';
+import UserList from './UserList';
+import AuthContext from '../contexts/AuthContext'; 
 
 const Home = () => {
     const { isLoggedIn, role, logout, isLoading } = useContext(AuthContext); 
@@ -21,6 +22,7 @@ const Home = () => {
                         <div>
                             <h2>Admin Dashboard</h2>
                             <ProductList />
+                            <Link to="/users">Users</Link>
                         </div>
                     )}
                     {role === 'user' && (
