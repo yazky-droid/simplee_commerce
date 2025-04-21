@@ -21,7 +21,7 @@ const EditProfile = () => {
         setSuccessMessage('');
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/profile/${id}`, {
+            const response = await fetch(`https://api.yazkymaulana.my.id/api/profile/${id}`, {
                 method: 'PUT', 
                 headers: {
                     'Content-Type': 'application/json',

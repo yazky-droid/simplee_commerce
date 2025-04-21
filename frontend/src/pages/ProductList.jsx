@@ -10,7 +10,7 @@ const ProductList = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/products?page=${currentPage}`,{
+            const response = await fetch(`https://api.yazkymaulana.my.id/api/products?page=${currentPage}`,{
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -100,7 +100,7 @@ const ProductList = () => {
     async function handleDelete(id) {
         if (window.confirm("Are you sure you want to delete this product?")) {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/products/${id}`, {
+                const response = await fetch(`https://api.yazkymaulana.my.id/api/products/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -14,7 +14,7 @@ export const ProductProvider = ({ children }) => {
     const fetchProducts = async (page = 1) => {
             setLoading(true);
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/products?page=${page}`);
+                const response = await fetch(`https://api.yazkymaulana.my.id/api/products?page=${page}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }

@@ -12,7 +12,7 @@ const ProductDetail = () => {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/products/${id}`, {
+                const response = await fetch(`https://api.yazkymaulana.my.id/api/products/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     },
@@ -78,7 +78,7 @@ const ProductDetail = () => {
                                 <dt className="text-sm font-medium text-gray-300">Image</dt>
                                 <img
                                     className="w-full h-full object-cover"
-                                    src={product.image_path ? `http://127.0.0.1:8000${product.image_path}` : 'https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png'}
+                                    src={product.image_path ? `https://api.yazkymaulana.my.id${product.image_path}` : 'https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png'}
                                     alt={product.name}
                                 />
                             </div>

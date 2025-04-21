@@ -23,7 +23,7 @@ const ChangePasswordForm = () => {
         setSuccessMessage(null);
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/password', {
+            const response = await fetch('https://api.yazkymaulana.my.id/api/password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

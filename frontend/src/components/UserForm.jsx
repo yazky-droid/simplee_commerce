@@ -16,7 +16,7 @@ const UserForm = () => {
         if (id) {
             const fetchUser = async () => {
                 try {
-                    const response = await fetch(`http://127.0.0.1:8000/api/users/${id}`, {
+                    const response = await fetch(`https://api.yazkymaulana.my.id/api/users/${id}`, {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`,
                         },
@@ -48,7 +48,7 @@ const UserForm = () => {
 
         try {
             const method = id ? 'PUT' : 'POST';
-            const url = id ? `http://127.0.0.1:8000/api/users/${id}` : 'http://127.0.0.1:8000/api/users';
+            const url = id ? `https://api.yazkymaulana.my.id/api/users/${id}` : 'https://api.yazkymaulana.my.id/api/users';
 
             const response = await fetch(url, {
                 method,

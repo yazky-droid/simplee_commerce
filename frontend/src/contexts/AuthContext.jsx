@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async (navigate) => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/logout', {
+            const response = await fetch('https://api.yazkymaulana.my.id/api/logout', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,

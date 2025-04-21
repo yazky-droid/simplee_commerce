@@ -27,7 +27,7 @@ const ProductExplore = () => {
                             <div className="aspect-w-4 aspect-h-3">
                                 <img
                                     className="w-full h-28 object-cover"
-                                    src={product.image_path ? `http://127.0.0.1:8000${product.image_path}` : 'https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png'}
+                                    src={product.image_path ? `https://api.yazkymaulana.my.id${product.image_path}` : 'https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png'}
                                     alt={product.name}
                                 />
                             </div>

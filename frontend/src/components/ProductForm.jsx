@@ -17,7 +17,7 @@ const ProductForm = () => {
             // fetch data product for editing 
             const fetchProduct = async () => {
                 try {
-                    const response = await fetch(`http://127.0.0.1:8000/api/products/${id}`, {
+                    const response = await fetch(`https://api.yazkymaulana.my.id/api/products/${id}`, {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`,
                         },
@@ -33,7 +33,7 @@ const ProductForm = () => {
                     setPrice(data.data.price);
                     setStock(data.data.stock);
                     if (data.data.image_path) {
-                        setPreviewImage(`http://127.0.0.1:8000${data.data.image_path}`);
+                        setPreviewImage(`https://api.yazkymaulana.my.id${data.data.image_path}`);
                     }
                 } catch (err) {
                     setError(err.message);
@@ -59,7 +59,7 @@ const ProductForm = () => {
 
         try {
             const method = 'POST';
-            const url = id ? `http://127.0.0.1:8000/api/products/${id}?_method=PUT` : 'http://127.0.0.1:8000/api/products';
+            const url = id ? `https://api.yazkymaulana.my.id/api/products/${id}?_method=PUT` : 'https://api.yazkymaulana.my.id/api/products';
 
             const response = await fetch(url, {
                 method,

@@ -55,7 +55,7 @@ const Home = () => {
                                         transition-transform
                                         hover:scale-[1.02] hover:shadow-lg">
                                             <div className="aspect-w-4 aspect-h-3">
-                                            <img className="w-full object-cover xs:object-contain sm:object-cover h-28" alt={product.name} src={product.image_path ? `http://127.0.0.1:8000${product.image_path}` : 'https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png'} /></div>
+                                            <img className="w-full object-cover xs:object-contain sm:object-cover h-28" alt={product.name} src={product.image_path ? `https://api.yazkymaulana.my.id${product.image_path}` : 'https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png'} /></div>
                                           <div className="p-3 flex flex-col justify-between gap-2 mt-2 h-1/2 xs:h-full sm:h-1/2 xs:w-2/3 w-full sm:w-full">
                                           <div>
                                             <div className=" flex justify-between">

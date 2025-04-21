@@ -10,7 +10,7 @@ const UserList = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/users?page=${currentPage}`, {
+            const response = await fetch(`https://api.yazkymaulana.my.id/api/users?page=${currentPage}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -98,7 +98,7 @@ const UserList = () => {
     async function handleDelete(id) {
         if (window.confirm("Are you sure you want to delete this user?")) {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/users/${id}`, {
+                const response = await fetch(`https://api.yazkymaulana.my.id/api/users/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
