@@ -31,7 +31,7 @@ const WishlistPage = () => {
                                 <img src={product.image_path ? `https://api.yazkymaulana.my.id${product.image_path}` : 'https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png'} alt={product.name} className="w-full h-48 object-cover rounded-md mb-2" />
                                 <h3 className="text-lg font-semibold text-white mb-1">{product.name}</h3>
                                 <p className="text-gray-300 text-sm mb-2">{product.description?.substring(0, 50)}...</p>
-                                <p className="text-indigo-400 font-semibold">${product.price}</p>
+                                <p className="text-indigo-400 font-semibold">Rp{product.price}</p>
                             </Link>
                             <div className="mt-2 flex justify-between items-center">
                                 <Link to={`/products/${product.id}`} className="text-blue-500 hover:underline">View Details</Link>

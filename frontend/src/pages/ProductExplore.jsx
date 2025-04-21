@@ -35,7 +35,7 @@ const ProductExplore = () => {
                                 <h3 className="text-lg font-semibold text-white truncate">{product.name}</h3>
                                 <p className="mt-1 text-sm text-gray-300 truncate">{product.description}</p>
                                 <div className="mt-2 flex items-center justify-between">
-                                    <span className="text-indigo-600 font-bold">${product.price}</span>
+                                    <span className="text-indigo-600 font-bold">Rp{product.price}</span>
                                     {product.stock > 0 ? (
                                         <span className="text-green-500 text-sm">Stok: {product.stock}</span>
                                     ) : (
