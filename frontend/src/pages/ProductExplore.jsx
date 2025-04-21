@@ -17,13 +17,13 @@ const ProductExplore = () => {
     }
 
     return (
-        <div className="bg-gray-100 dark:bg-gray-900 py-10 px-6">
+        <div className="bg-gray-900 py-10 px-6">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Jelajahi Koleksi Kami</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Jelajahi Koleksi Kami</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {products.map(product => (
-                        <div key={product.id} className='dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300'>
-                        <Link to={`/products/${product.id}`} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                        <div key={product.id} className='bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300'>
+                        <Link to={`/products/${product.id}`} className=" bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
                             <div className="aspect-w-4 aspect-h-3">
                                 <img
                                     className="w-full h-28 object-cover"
@@ -32,8 +32,8 @@ const ProductExplore = () => {
                                 />
                             </div>
                             <div className="p-4">
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">{product.name}</h3>
-                                <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 truncate">{product.description}</p>
+                                <h3 className="text-lg font-semibold text-white truncate">{product.name}</h3>
+                                <p className="mt-1 text-sm text-gray-300 truncate">{product.description}</p>
                                 <div className="mt-2 flex items-center justify-between">
                                     <span className="text-indigo-600 font-bold">${product.price}</span>
                                     {product.stock > 0 ? (
@@ -58,7 +58,7 @@ const ProductExplore = () => {
                         <button
                             onClick={() => setCurrentPage(pagination.current_page - 1)}
                             disabled={pagination.current_page === 1}
-                            className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold py-2 px-4 rounded-l hover:bg-gray-400 dark:hover:bg-gray-600 disabled:opacity-50"
+                            className="bg-gray-700 text-gray-300 font-bold py-2 px-4 rounded-l  hover:bg-gray-600 disabled:opacity-50"
                         >
                             Previous
                         </button>
@@ -66,7 +66,7 @@ const ProductExplore = () => {
                             <button
                                 key={page}
                                 onClick={() => setCurrentPage(page)}
-                                className={`py-2 px-4 font-bold ${currentPage === page ? 'bg-indigo-500 text-white' : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 hover:bg-indigo-300 dark:hover:bg-indigo-700'}`}
+                                className={`py-2 px-4 font-bold ${currentPage === page ? 'bg-indigo-500 text-white' : ' bg-gray-600 text-gray-300 hover:bg-gray-700'}`}
                             >
                                 {page}
                             </button>
@@ -74,7 +74,7 @@ const ProductExplore = () => {
                         <button
                             onClick={() => setCurrentPage(pagination.current_page + 1)}
                             disabled={pagination.current_page === pagination.total_pages}
-                            className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold py-2 px-4 rounded-r hover:bg-gray-400 dark:hover:bg-gray-600 disabled:opacity-50"
+                            className="bg-gray-700 text-gray-300 font-bold py-2 px-4 rounded-r  hover:bg-gray-600 disabled:opacity-50"
                         >
                             Next
                         </button>

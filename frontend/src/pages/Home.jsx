@@ -18,15 +18,15 @@ const Home = () => {
     const displayedProducts = products.slice(0,4);
 
     return (
-        <div className="bg-gray-100 dark:bg-gray-900 py-6 md:py-8">
+        <div className="bg-gray-900 py-6 md:py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="lg:grid lg:grid-cols-1 lg:gap-8">
                     <div className="mt-10 lg:mt-0">
                         <div className="flex justify-between items-center flex-col md:flex-row">
-                            <h2 className="text-center md:text-start md:flex-1/2 text-6xl mb-4 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-7xl">
+                            <h2 className="text-center md:text-start md:flex-1/2 text-6xl mb-4 font-extrabold tracking-tight text-white sm:text-7xl">
                             Your Style. Your Rules. <br/><span className='font-serif'>Karsaster</span>
                             </h2>
-                            <p className="md:flex-1/3 text-justify p-3 md:p-5 mt-3 text-lg text-gray-500 dark:text-gray-300">
+                            <p className="md:flex-1/3 text-justify p-3 md:p-5 mt-3 text-lg text-gray-300">
                             Wanna break the mold? Karsaster's got the freshest threads to fuel your individuality. Explore a diverse range of high-quality menswear – from laid-back vibes to dressed-to-impress looks. Express yourself, your way.
                             </p>
                         </div>
@@ -43,14 +43,14 @@ const Home = () => {
                     
                         {displayedProducts.length > 0 && (
                             <div className="mt-8">
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Produk Terbaru</h3>
+                                <h3 className="text-xl font-semibold  text-white mb-2">Produk Terbaru</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                                         <div className="bg-gray-800/15 rounded-lg shadow-md p-4 flex flex-col gap-4 items-center md:items-end">
-                                            <h4 className="text-gray-900 dark:text-white font-extrabold text-4xl md:text-7xl">Karsstr</h4>
-                                            <h4 className="text-gray-900 dark:text-white font-extrabold text-4xl md:text-7xl">Merch</h4>
+                                            <h4 className="text-white font-extrabold text-4xl md:text-7xl">Karsstr</h4>
+                                            <h4 className="text-white font-extrabold text-4xl md:text-7xl">Merch</h4>
                                         </div>
                                     {displayedProducts.map(product => (
-                                        <div key={product.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-hidden
+                                        <div key={product.id} className="bg-gray-800 rounded-lg shadow-md p-4 overflow-hidden
                                         cursor-pointer
                                         transition-transform
                                         hover:scale-[1.02] hover:shadow-lg">
