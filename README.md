@@ -11,6 +11,11 @@ This project is a mini e-commerce web application built for a take-home test. It
 | Frontend | [https://ecommerce-shop.vercel.app](https://simplee-commerce.vercel.app/) |
 | Backend  | [https://api.yazkymaulana.my.id/api](https://api.yazkymaulana.my.id/api) |
 
+### Account admin for test
+- admin@gmail.com
+- devadmin
+
+
 ---
 
 ## ✨ Features
@@ -39,6 +44,10 @@ project-root/
 ├── backend/ # Laravel REST API (Sanctum + MySQL)
 └── frontend/ # React App (TailwindCSS)
 
+---
+
+## Docs Postman
+url: https://documenter.getpostman.com/view/18351570/2sB2iwEEYN
 ---
 
 ## ⚙️ How to Run Locally
