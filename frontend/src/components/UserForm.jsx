@@ -25,10 +25,11 @@ const UserForm = () => {
                         throw new Error('Failed to fetch user');
                     }
                     const data = await response.json();
-                    setName(data.name);
-                    setAddress(data.address ? data.address : '');
-                    setPhone(data.phone ? data.phone : '');
-                    setEmail(data.email);
+                    console.log(data.data.name)
+                    setName(data.data.name);
+                    setAddress(data.data.address ? data.data.address : '');
+                    setPhone(data.data.phone ? data.data.phone : '');
+                    setEmail(data.data.email);
                 } catch (err) {
                     setError(err.message);
                 }
@@ -68,7 +69,7 @@ const UserForm = () => {
                 }
             }
 
-            navigate('/users');
+            navigate('/admin/users');
         } catch (err) {
             setError(err.message);
         }
@@ -80,29 +81,29 @@ const UserForm = () => {
             {error && <p className="text-red-500">{error}</p>}
             <form onSubmit={handleSubmit} className="max-w-md mx-auto">
                 <div className="mb-4">
-                    <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                    <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
+                    <label htmlFor="name" className="block text-gray-400 text-sm font-bold mb-2">Name</label>
+                    <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline" required />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="address" className="block text-gray-700 text-sm font-bold mb-2">Address</label>
-                    <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                    <label htmlFor="address" className="block text-gray-400 text-sm font-bold mb-2">Address</label>
+                    <textarea type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"></textarea>
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="phone" className="block text-gray-700 text-sm font-bold mb-2">Phone</label>
-                    <input type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                    <label htmlFor="phone" className="block text-gray-400 text-sm font-bold mb-2">Phone</label>
+                    <input type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">Email</label>
-                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
+                    <label htmlFor="email" className="block text-gray-400 text-sm font-bold mb-2">Email</label>
+                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline" required />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                    {id && <p className="text-sm text-gray-500">Leave blank to keep current password.</p>}
+                    <label htmlFor="password" className="block text-gray-400 text-sm font-bold mb-2">Password</label>
+                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline" />
+                    {id && <p className="text-sm text-gray-300">Leave blank to keep current password.</p>}
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="password_confirmation" className="block text-gray-700 text-sm font-bold mb-2">Password Confirmation</label>
-                    <input type="password" id="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                    <label htmlFor="password_confirmation" className="block text-gray-400 text-sm font-bold mb-2">Password Confirmation</label>
+                    <input type="password" id="password_confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
                 <div className="flex items-center justify-between">
                     <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Save User</button>

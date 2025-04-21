@@ -15,6 +15,7 @@ import ProductExplore from './components/ProductExplore'
 import Layout from './components/Layout'
 import UserProfile from './components/UserProfile'
 import AdminDashboard from './components/AdminDashboard'
+import EditProfile from './components/EditProfile'
 
 
 
@@ -25,13 +26,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/register" element={ <RegisterForm /> } />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/update-password" element={ <ChangePasswordForm />} />
+        <Route path="/register" element={ <Layout><RegisterForm /></Layout> } />
+        <Route path="/login" element={<Layout><LoginForm /></Layout>} />
+        <Route path="/update-password" element={ <Layout><ChangePasswordForm /></Layout>} />
         <Route path="/" element={<Layout><Home /></Layout>} />
         <Route path="/products" element={<Layout><ProductExplore /></Layout>} />
         <Route path="/products/:id" element={<Layout><ProductDetail /></Layout>} />
         <Route path="/profile" element={<Layout>{role === 'user' ? <UserProfile /> : <div>Access Denied</div>}</Layout>} />
+        <Route path="/profile/:id/edit" element={<Layout>{role === 'user' ? <EditProfile /> : <div>Access Denied</div>}</Layout>} />
 
         {/* Admin Routes */}
         <Route path="/admin/dashboard" element={<Layout>{role === 'admin' ? <AdminDashboard /> : <div>Access Denied</div>}</Layout>} />

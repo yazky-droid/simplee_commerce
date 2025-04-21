@@ -14,7 +14,7 @@ const ProductExplore = () => {
     }
 
     return (
-        <div className="bg-gray-100 dark:bg-gray-900 py-10">
+        <div className="bg-gray-100 dark:bg-gray-900 py-10 px-6">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Jelajahi Koleksi Kami</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -22,7 +22,7 @@ const ProductExplore = () => {
                         <Link key={product.id} to={`/products/${product.id}`} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
                             <div className="aspect-w-4 aspect-h-3">
                                 <img
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-28 object-cover"
                                     src={product.image_path ? `http://127.0.0.1:8000${product.image_path}` : 'https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png'}
                                     alt={product.name}
                                 />

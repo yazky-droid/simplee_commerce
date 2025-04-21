@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import AuthContext from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 
 const UserProfile = () => {
     const { user, isLoading } = useContext(AuthContext);
@@ -25,16 +26,24 @@ const UserProfile = () => {
                             <dt className="text-sm font-medium text-gray-300">Name</dt>
                             <dd className="mt-1 text-sm text-white sm:col-span-2">{user.name}</dd>
                         </div>
-                        <div className="bg-slate-800 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-300">Address</dt>
+                            <dd className="mt-1 text-sm text-white sm:col-span-2">{user.address}</dd>
+                        </div>
+                        <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-300">Phone</dt>
+                            <dd className="mt-1 text-sm text-white sm:col-span-2">{user.phone}</dd>
+                        </div>
+                        <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-sm font-medium text-gray-300">Email</dt>
                             <dd className="mt-1 text-sm text-white sm:col-span-2">{user.email}</dd>
                         </div>
                         <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt className="text-sm font-medium text-gray-300">Role</dt>
-                            <dd className="mt-1 text-sm text-white sm:col-span-2">{user.role}</dd>
+                            <dd className="mt-1 text-sm text-white sm:col-span-2">{localStorage.getItem('role') == 'user' ? 'Our Precious Customer' : 'Admin'}</dd>
                         </div>
-                        <div className="bg-slate-800 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-300">Created At</dt>
+                        <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-300">Joined At</dt>
                             <dd className="mt-1 text-sm text-white sm:col-span-2">{new Date(user.created_at).toLocaleDateString()}</dd>
                         </div>
                         <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -42,6 +51,14 @@ const UserProfile = () => {
                             <dd className="mt-1 text-sm text-white sm:col-span-2">{new Date(user.updated_at).toLocaleDateString()}</dd>
                         </div>
                     </dl>
+                </div>
+                <div className="px-4 mt-4 py-4 sm:px-6 bg-gray-900 flex justify-between gap-2">
+                    <Link to="/update-password" className="border-gray-800 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Update Password
+                    </Link>
+                    <Link to={`/profile/${user.id}/edit`} className="bg-gray-800 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Edit Profile
+                    </Link>
                 </div>
             </div>
         </div>

@@ -18,21 +18,23 @@ const Home = () => {
     const displayedProducts = products.slice(0,4);
 
     return (
-        <div className="bg-gray-100 dark:bg-gray-900 py-16">
+        <div className="bg-gray-100 dark:bg-gray-900 py-6 md:py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="lg:grid lg:grid-cols-1 lg:gap-8">
                     <div className="mt-10 lg:mt-0">
-                        <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-                            Koleksi Baju Pria Eksklusif untuk Gaya Terbaikmu
-                        </h2>
-                        <p className="mt-3 text-lg text-gray-500 dark:text-gray-300">
-                            Temukan berbagai pilihan baju pria berkualitas tinggi dengan desain modern dan elegan. Dari kasual hingga formal, Karsaster hadir untuk melengkapi setiap gaya Anda.
-                        </p>
+                        <div className="flex justify-between items-center flex-col md:flex-row">
+                            <h2 className="text-center md:text-start md:flex-1/2 text-6xl mb-4 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-7xl">
+                            Your Style. Your Rules. <br/><span className='font-serif'>Karsaster</span>
+                            </h2>
+                            <p className="md:flex-1/3 text-justify p-3 md:p-5 mt-3 text-lg text-gray-500 dark:text-gray-300">
+                            Wanna break the mold? Karsaster's got the freshest threads to fuel your individuality. Explore a diverse range of high-quality menswear – from laid-back vibes to dressed-to-impress looks. Express yourself, your way.
+                            </p>
+                        </div>
                         <div className="mt-8">
                             <div className="inline-flex rounded-md shadow">
                                 <Link
                                     to="/products"
-                                    className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                                    className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-md text-white border border-gray-700 bg-gray-900 hover:bg-gray-700"
                                 >
                                     Jelajahi Koleksi
                                 </Link>
@@ -43,9 +45,9 @@ const Home = () => {
                             <div className="mt-8">
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Produk Terbaru</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                                        <div className="bg-gray-800/15 rounded-lg shadow-md p-4 flex flex-col gap-4 md:items-end">
-                                            <h4 className="text-gray-900 dark:text-white font-extrabold text-3xl md:text-7xl">Karsstr</h4>
-                                            <h4 className="text-gray-900 dark:text-white font-extrabold text-3xl md:text-7xl">Merch</h4>
+                                        <div className="bg-gray-800/15 rounded-lg shadow-md p-4 flex flex-col gap-4 items-center md:items-end">
+                                            <h4 className="text-gray-900 dark:text-white font-extrabold text-4xl md:text-7xl">Karsstr</h4>
+                                            <h4 className="text-gray-900 dark:text-white font-extrabold text-4xl md:text-7xl">Merch</h4>
                                         </div>
                                     {displayedProducts.map(product => (
                                         <div key={product.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 overflow-hidden
@@ -65,14 +67,14 @@ const Home = () => {
                                               </div>
                                   
                                               <div className="flex flex-col items-end">
-                                                <span className="text-amber-600">{product.price}</span>
+                                                <span className="text-cyan-500">Rp{product.price}</span>
                                               </div>
                                             </div>
-                                            <p className="text-sm text-gray-600">{product.description}</p>
+                                            <p className="text-sm text-gray-400 text-center">{product.description}</p>
                                           </div>
-                                          <div className="w-full pt-2 border-t flex justify-between items-center">
+                                          <div className="w-full pt-4 border-t flex justify-between items-center mt-4">
                                             <button className="border border-cyan-600 py-3 text-sm rounded-full px-6 hover:bg-cyan-600 hover:text-white transition hover:shadow-md disabled:cursor-not-allowed">
-                                              Add to Bag
+                                              Add to Cart
                                             </button>
                                             <button className="disabled:cursor-not-allowed">
                                             Wish

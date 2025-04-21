@@ -87,6 +87,39 @@ class AuthController extends Controller
         ], 200);
     }
 
+    public function updateProfile(Request $request, User $user)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|max:255',
+            'address' => 'nullable|string',
+            'phone' => 'nullable|numeric',
+            'email' => 'string|email|max:255|unique:users,email,' . $user->id, 
+            'password' => 'nullable|string|min:8',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation error',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $userData = $request->except('password');
+
+        if ($request->filled('password')) {
+            $userData['password'] = Hash::make($request->password);
+        }
+
+        $user->update($userData);
+        
+        return response()->json([
+            'message' => 'User profile updated successfully',
+            'data' => [
+                'user' => $user,
+            ],
+        ], 200);
+    }
+
     public function updatePassword(Request $request)
     {
         $validator = Validator::make($request->all(), [

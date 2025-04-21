@@ -56,32 +56,45 @@ const ProductDetail = () => {
                         <dl>
                             <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt className="text-sm font-medium text-gray-300">Price</dt>
-                                <dd className="mt-1 text-sm text-white sm:col-span-2">${product.price}</dd>
+                                <dd className="mt-1 text-sm text-white sm:col-span-2">Rp{product.price}</dd>
                             </div>
-                            <div className="bg-slate-800 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt className="text-sm font-medium text-gray-300">Stock</dt>
                                 <dd className="mt-1 text-sm text-white sm:col-span-2">{product.stock}</dd>
                             </div>
                             <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt className="text-sm font-medium text-gray-300">Category</dt>
-                                <dd className="mt-1 text-sm text-white sm:col-span-2">{product.category}</dd>
+                                <dd className="mt-1 text-sm text-white sm:col-span-2">Casual Wear</dd>
                             </div>
-                            <div className="bg-slate-800 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt className="text-sm font-medium text-gray-300">Created At</dt>
+                            <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt className="text-sm font-medium text-gray-300">Product Posted</dt>
                                 <dd className="mt-1 text-sm text-white sm:col-span-2">{new Date(product.created_at).toLocaleDateString()}</dd>
                             </div>
                             <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt className="text-sm font-medium text-gray-300">Updated At</dt>
+                                <dt className="text-sm font-medium text-gray-300">Product Updated</dt>
                                 <dd className="mt-1 text-sm text-white sm:col-span-2">{new Date(product.updated_at).toLocaleDateString()}</dd>
+                            </div>
+                            <div className="bg-gray-900 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt className="text-sm font-medium text-gray-300">Image</dt>
+                                <img
+                                    className="w-full h-full object-cover"
+                                    src={product.image_path ? `http://127.0.0.1:8000${product.image_path}` : 'https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png'}
+                                    alt={product.name}
+                                />
                             </div>
                         </dl>
                     </div>
                     <div className="px-4 py-5 sm:px-6 bg-slate-800 flex justify-between">
-                        <Link to="/products" className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        <Link to="/products" className="bg-slate-900 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Back to Explore
                         </Link>
+                        {localStorage.getItem('role') === 'user' && (
+                            <button className="disabled:cursor-not-allowed">
+                            Wish
+                            </button>
+                        )}
                         {localStorage.getItem('role') === 'admin' && (
-                            <Link to={`/admin/products/${product.id}/edit`} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            <Link to={`/admin/products/${product.id}/edit`} className="bg-gray-900 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                 Edit Product
                             </Link>
                         )}

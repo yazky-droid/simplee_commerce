@@ -36,7 +36,7 @@ const ProductList = () => {
     }, [currentPage]); 
 
     if (loading) {
-        return <div className="text-gray-300">Loading...</div>
+        return <div className="text-gray-300 align-middle text-center">Loading...</div>
     }
 
     if (error) {
@@ -46,7 +46,8 @@ const ProductList = () => {
     return (
         <div className="bg-gray-900 text-white py-6 px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold mb-4">Product List</h2>
-            <Link to="/admin/products/create" className="bg-slate-500 hover:bg-slate-700 text-gray-300 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4 inline-block">Create Product</Link>
+            <Link to="/admin/products/create" className="bg-slate-700 hover:bg-slate-800 text-gray-300 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4 inline-block">Create Product</Link>
+            <div className="overflow-x-auto">
             {products.length > 0 ? (
                 <table className="min-w-full leading-normal">
                     <thead>
@@ -65,10 +66,12 @@ const ProductList = () => {
                                 <td className="px-5 py-5 border-b border-gray-700 bg-gray-900 text-sm">{product.description}</td>
                                 <td className="px-5 py-5 border-b border-gray-700 bg-gray-900 text-sm">{product.price}</td>
                                 <td className="px-5 py-5 border-b border-gray-700 bg-gray-900 text-sm">{product.stock}</td>
-                                <td className="px-5 py-5 border-b border-gray-70 bg-gray-900 text-sm">
-                                    <Link to={`/admin/products/${product.id}`} className="text-blue-500 hover:underline mr-2">View</Link>
-                                    <Link to={`/admin/products/${product.id}/edit`} className="text-green-500 hover:underline mr-2">Edit</Link>
-                                    <button onClick={() => handleDelete(product.id)} className="text-red-500 hover:underline">Delete</button>
+                                <td className="px-5 py-5 border-b border-gray-700 bg-gray-900 text-sm">
+                                    <div className="flex items-center">
+                                        <Link to={`/admin/products/${product.id}`} className="text-blue-500 hover:underline mr-2">View</Link>
+                                        <Link to={`/admin/products/${product.id}/edit`} className="text-green-500 hover:underline mr-2">Edit</Link>
+                                        <button onClick={() => handleDelete(product.id)} className="text-red-500 hover:underline">Delete</button>
+                                    </div>
                                 </td>
                             </tr>
                         ))}
@@ -77,6 +80,7 @@ const ProductList = () => {
             ) : (
                 <p>No products found.</p>
             )}
+            </div>
 
             {/* Pagination */}
             <div className="flex justify-center mt-4">
