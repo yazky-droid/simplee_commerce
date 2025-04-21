@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ProductContext from '../contexts/ProductContext';
+import AuthContext from '../contexts/AuthContext';
+import WishlistButton from '../components/WishlistButton';
 
 const ProductExplore = () => {
     const { products, loading, error, pagination, currentPage, setCurrentPage } = useContext(ProductContext);
+    const { isLoggedIn, role } = useContext(AuthContext);
 
     if (loading) {
         return <div>Loading products...</div>;
@@ -19,7 +22,8 @@ const ProductExplore = () => {
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Jelajahi Koleksi Kami</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {products.map(product => (
-                        <Link key={product.id} to={`/products/${product.id}`} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                        <div key={product.id} className='dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300'>
+                        <Link to={`/products/${product.id}`} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
                             <div className="aspect-w-4 aspect-h-3">
                                 <img
                                     className="w-full h-28 object-cover"
@@ -40,6 +44,12 @@ const ProductExplore = () => {
                                 </div>
                             </div>
                         </Link>
+                        <div className="mt-2 flex justify-end">
+                            {role == 'user'  && 
+                            <WishlistButton productId={product.id} />
+                            }
+                        </div>
+                        </div>
                     ))}
                 </div>
 

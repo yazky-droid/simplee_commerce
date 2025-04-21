@@ -34,7 +34,10 @@ const Navbar = () => {
                                     </>
                                 )}
                                 {isLoggedIn && role === 'user' && (
-                                    <Link to="/profile" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium">Profile</Link>
+                                    <>
+                                        <Link to="/profile" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium">Profile</Link>
+                                        <Link to="/wishlist" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium">Wishlist</Link>
+                                    </>
                                 )}
                             </div>
                         </div>
@@ -76,7 +79,10 @@ const Navbar = () => {
                         </>
                     )}
                     {isLoggedIn && role === 'user' && (
-                        <Link to="/profile" className="bg-gray-900 text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Profile</Link>
+                        <>
+                            <Link to="/profile" className="bg-gray-900 text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Profile</Link>
+                            <Link to="/wishlist" className="bg-gray-900 text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Wishlist</Link>
+                        </>
                     )}
                 </div>
                 <div className="pt-4 pb-3 border-t border-gray-700">
@@ -85,8 +91,8 @@ const Navbar = () => {
                             <button onClick={handleLogout} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full block text-left">Logout</button>
                         ) : (
                             <>
-                                <Link to="/login" className="bg-gray-900 text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Login</Link>
-                                <Link to="/register" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full block text-left mt-2">Register</Link>
+                                <Link to="/login" className="bg-slate-800 border text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Login</Link>
+                                <Link to="/register" className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full block text-left mt-2">Register</Link>
                             </>
                         )}
                     </div>

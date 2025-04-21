@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../contexts/AuthContext'; 
 import ProductContext from '../contexts/ProductContext';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
 const Home = () => { 
     const navigate = useNavigate();
@@ -76,9 +77,6 @@ const Home = () => {
                                             <button className="border border-cyan-600 py-3 text-sm rounded-full px-6 hover:bg-cyan-600 hover:text-white transition hover:shadow-md disabled:cursor-not-allowed">
                                               Add to Cart
                                             </button>
-                                            <button className="disabled:cursor-not-allowed">
-                                            Wish
-                                            </button>
                                           </div>
                                         </div>
                                         </div>
@@ -93,46 +91,6 @@ const Home = () => {
             </div>
         </div>
     );
-{/* <div key={product.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-                                            <div className="aspect-w-4 aspect-h-3">
-                                                <img
-                                                    className="w-full h-full object-cover"
-                                                    src={product.image_path ? `http://127.0.0.1:8000${product.image_path}` : 'https://binamehta.com/wp-content/uploads/image-placeholder-300x200.png'}
-                                                    alt={product.name}
-                                                />
-                                            </div>
-                                            <h4 className="font-semibold text-gray-900 dark:text-white">{product.name}</h4>
-                                            <p className="text-gray-600 dark:text-gray-300 text-sm">{product.description?.substring(0, 50)}...</p>
-                                            <p className="text-indigo-600 font-bold">${product.price}</p>
-                                        </div> */}
-    // return (
-    //     <div>
-    //         <h1>Home</h1>
-    //         {isLoggedIn ? (
-    //             <div>
-    //                 <button onClick={() => logout(navigate)}>Logout</button> {}
-    //                 {role === 'admin' && (
-    //                     <div>
-    //                         <h2>Admin Dashboard</h2>
-    //                         <ProductList />
-    //                         <Link to="/users">Users</Link>
-    //                     </div>
-    //                 )}
-    //                 {role === 'user' && (
-    //                     <div>
-    //                         <h2>User Dashboard</h2>
-    //                         {/* Tampilkan info akun user (misalnya) */}
-    //                     </div>
-    //                 )}
-    //             </div>
-    //         ) : (
-    //             <div>
-    //                 <h1>Please Login</h1>
-    //                 <Link to="/login">Login</Link>
-    //             </div>
-    //         )}
-    //     </div>
-    // );
 };
 
 export default Home;
