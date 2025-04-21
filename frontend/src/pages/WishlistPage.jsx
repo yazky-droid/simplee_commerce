@@ -11,7 +11,7 @@ const WishlistPage = () => {
         const wishlist = localStorage.getItem('wishlist');
         const wishlistItemIds = wishlist ? JSON.parse(wishlist) : [];
 
-        const allProducts = products || []; // Example: Assuming you have product data stored
+        const allProducts = products || []; 
 
         const currentWishlistItems = allProducts.filter(product =>
             wishlistItemIds.includes(product.id)

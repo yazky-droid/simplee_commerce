@@ -90,7 +90,7 @@ const ProductForm = () => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         setImage(file);
-        setPreviewImage(URL.createObjectURL(file)); // Create a preview URL
+        setPreviewImage(URL.createObjectURL(file)); // Create a preview URL for image
     };
 
     return(
